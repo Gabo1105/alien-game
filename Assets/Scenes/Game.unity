@@ -1854,7 +1854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b4feb98c071e9e448aa572b713c69a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 8
   bala: {fileID: 682363901803915404, guid: 55616965cdc9e6c4eb6d90d01b1e9f59, type: 3}
   Metralla: {fileID: 1992711135569624942, guid: 24ce502c09670624d8585e99bfe37e33, type: 3}
   fireRate: 1
