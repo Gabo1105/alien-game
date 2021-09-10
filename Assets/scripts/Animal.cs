@@ -7,6 +7,8 @@ public class Animal : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] bool movingRight;
     [SerializeField] GameManager gm;
+    public int salud;
+    
 
     float minX, maxX;
 
@@ -28,19 +30,19 @@ public class Animal : MonoBehaviour
     {
         if (movingRight)
         {
-            transform.Translate(new Vector2(speed * Time.deltaTime, 0), Space.World);
+            transform.Translate(new Vector2(speed * Time.deltaTime, 0));
 
         }
 
         else
-            transform.Translate(new Vector2(-speed * Time.deltaTime, 0), Space.World);
+            transform.Translate(new Vector2(-speed * Time.deltaTime, 0));
 
         if (transform.position.x > maxX - 0.4f)
         {
             movingRight = false;
 
         }
-        else if (transform.position.x < minX+ 0.4f)
+        else if (transform.position.x < minX + 0.4f)
         {
             movingRight = true;
 
@@ -49,13 +51,34 @@ public class Animal : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        GameObject colisionando = collision.gameObject;
-
-        if(colisionando.tag == "Disparo")
+        if (Time.timeScale < 1)
         {
-            gm.ReducirNumEnemigos();
-            Destroy(this.gameObject);
+
+            GameObject colisionando = collision.gameObject;
+            if (colisionando.tag == "Disparo")
+            {
+                gm.ReducirNumEnemigos();
+                Destroy(this.gameObject);
+
+            }
+
         }
-        
+        else
+        {
+            GameObject colisionando = collision.gameObject;
+            if (colisionando.tag == "Disparo")
+            {
+                salud--;
+
+                if (salud <= 0)
+                {
+                    gm.ReducirNumEnemigos();
+                    Destroy(this.gameObject);
+                }
+
+            }
+
+
+        }
     }
 }

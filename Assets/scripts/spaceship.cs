@@ -9,6 +9,10 @@ public class spaceship : MonoBehaviour
     [SerializeField] GameObject Metralla;
     [SerializeField] float fireRate;
     [SerializeField] float fireRate2;
+    float tiempoi=0;
+    float usosBT = 3;
+    float nextBT=0;
+    float BTrate;
 
 
     float minX;
@@ -43,6 +47,7 @@ public class spaceship : MonoBehaviour
             Mover();
             Disparar();
             Dispararmetralla();
+            BulletTime();
         }
     }
     void Mover()
@@ -91,6 +96,29 @@ public class spaceship : MonoBehaviour
     }
     void BulletTime()
     {
+        if (Input.GetKeyDown(KeyCode.R) && Time.time > nextBT)
+        {
 
+            nextBT = Time.timeScale + BTrate;
+            usosBT--;
+
+            if (usosBT >= 0)
+            {
+                tiempoi = Time.unscaledTime;
+                Time.timeScale = 0.5f;
+
+
+            }
+        }
+        if (tiempoi != 0)
+        {
+            if (Time.unscaledTime - tiempoi >= 3)
+            {
+
+                Time.timeScale = 1;
+            }
+        }
     }
-}
+
+ }
+

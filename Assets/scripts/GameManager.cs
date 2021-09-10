@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         canvas.SetActive(false);
+        canvas2.SetActive(false);
+        
+        
     }
 
     // Update is called once per frame
@@ -37,6 +40,16 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(2);
     }
 
+    public void NextLevel2()
+    {
+        SceneManager.LoadScene(3);
+    }
+
+    public void ResetGame()
+    {
+        SceneManager.LoadScene(0);
+    }
+
     void PauseGame()
     {
         gamepause = gamepause ? false : true;
@@ -55,6 +68,7 @@ public class GameManager : MonoBehaviour
         {
 
             Ganar();
+            
         }
     }
     void Ganar()
@@ -66,6 +80,8 @@ public class GameManager : MonoBehaviour
         Debug.Log("ganaste :D");
         Time.timeScale = gamepause ? 0 : 1;
         canvas2.SetActive(gameOver);
-
+        
     }
+
+
 }
